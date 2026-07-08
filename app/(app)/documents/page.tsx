@@ -126,7 +126,9 @@ export default async function DocumentsPage({ searchParams }: PageProps) {
                           {doc.file_name}
                         </span>
                         {doc.is_duplicate && (
-                          <AlertTriangle className="h-3.5 w-3.5 shrink-0 text-orange-500" title="Duplicate" />
+                          <span title="Duplicate" className="inline-flex items-center">
+                            <AlertTriangle className="h-3.5 w-3.5 shrink-0 text-orange-500" />
+                          </span>
                         )}
                       </Link>
                     </td>
