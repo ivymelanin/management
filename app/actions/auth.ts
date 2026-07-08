@@ -111,3 +111,6 @@ export async function updatePassword(prevState: AuthFormState, formData: FormDat
 
   redirect('/dashboard')
 }
+
+
+
