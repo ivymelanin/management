@@ -24,7 +24,7 @@ export default async function ReportsPage({ searchParams }: PageProps) {
 
   let query = supabase
     .from('documents')
-    .select('id, vendor_name, status, document_type, amount, vat_amount, currency, document_date, is_duplicate, created_at')
+    .select('id, vendor_name, invoice_number, status, document_type, amount, vat_amount, currency, document_date, is_duplicate, created_at')
 
   if (params.date_from) query = query.gte('document_date', params.date_from)
   if (params.date_to) query = query.lte('document_date', params.date_to)
