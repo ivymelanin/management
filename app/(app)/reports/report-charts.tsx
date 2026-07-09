@@ -16,6 +16,10 @@ import {
   Line,
 } from 'recharts'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import type {
+  NameType,
+  ValueType,
+} from 'recharts/types/component/DefaultTooltipContent'
 
 interface ReportChartsProps {
   byVendor: Array<{ vendor_name: string; count: number; total_amount: number; total_vat: number }>
@@ -72,7 +76,10 @@ export function ReportCharts({ byVendor, byMonth, byStatus }: ReportChartsProps)
                 <XAxis dataKey="month" tick={{ fontSize: 12 }} />
                 <YAxis tickFormatter={formatAmount} tick={{ fontSize: 12 }} />
                 <Tooltip
-                  formatter={(val: number) => [`R${val.toLocaleString()}`, 'Amount']}
+                  formatter={(value) => [
+                  `R${Number(value ?? 0).toLocaleString()}`,
+                  'Amount',
+  ]}
                 />
                 <Line
                   type="monotone"
@@ -107,7 +114,12 @@ export function ReportCharts({ byVendor, byMonth, byStatus }: ReportChartsProps)
                   tick={{ fontSize: 11 }}
                   width={120}
                 />
-                <Tooltip formatter={(val: number) => [`R${val.toLocaleString()}`, 'Amount']} />
+                <Tooltip
+                  formatter={(value) => [
+                    `R${Number(value ?? 0).toLocaleString()}`,
+                    'Amount',
+                  ]}
+                />
                 <Bar dataKey="total_amount" fill="#6366F1" radius={[0, 4, 4, 0]} name="Amount" />
               </BarChart>
             </ResponsiveContainer>
@@ -140,7 +152,12 @@ export function ReportCharts({ byVendor, byMonth, byStatus }: ReportChartsProps)
                     <Cell key={index} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(val: number, name: string) => [val, name]} />
+                <Tooltip
+                formatter={(value) => [
+    `R${Number(value ?? 0).toLocaleString()}`,
+    'Amount',
+  ]} 
+                />
                 <Legend
                   formatter={(value) => (
                     <span className="text-xs text-gray-600">{value}</span>
